@@ -4,8 +4,8 @@ import './App.css';
 import Signup from './components/Signup';
 import Header from './components/Header';
 import Login from './components/Login';
-import Library from './components/Library';
 import NewExcercise from './forms/NewExcercise';
+import WorkoutsLibrary from './library/WorkoutsLibrary';
 
 class App extends Component {
   state = {
@@ -27,6 +27,7 @@ class App extends Component {
   temporaryButton = () => {this.setState({view: 'NewExcercise'})}
   switchLogin = () => {this.setState({view: 'Login'})}
   switchSignup = () => {this.setState({view: 'Signup'})}
+  switchLibrary = () => {this.setState({view: 'Library'})}
 
   render() {
     return (
@@ -38,12 +39,10 @@ class App extends Component {
             return <Signup />
           case 'Login':
             return <Login temporaryButton={this.temporaryButton}/>
-          case 'Library':
-            return <Library />
           case 'NewExcercise':
-            return <NewExcercise />
+            return <NewExcercise switchLibrary={this.switchLibrary}/>
           default:
-            return <NewExcercise />
+            return <WorkoutsLibrary />
         }
       })()}
       </div>

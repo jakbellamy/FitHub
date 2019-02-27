@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
-export default class Library extends Component {
+export default class StitchPage extends Component {
   render() {
     return (
       <div>
-        <h1>WELCOME IN {this.user.name}!</h1>
+        
       </div>
     )
   }

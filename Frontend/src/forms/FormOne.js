@@ -33,7 +33,7 @@ export default class FormOne extends Component {
       workout: {
         name: e.target.name.value,
         trainer: e.target.trainer.value,
-        keywords: e.target.Keyword.value
+        keywords: [e.target.Keyword.value]
       }
     }, () => {
       this.postRequest(e)
@@ -63,9 +63,8 @@ export default class FormOne extends Component {
     else{
       return(
         <div>
-          <h3>{this.state.workout.name}</h3>
-          <p>({this.state.workout.keywords})</p>
-          <p>By User #{this.state.workout.trainer}</p>
+          <h2 style={{textAlign: 'center'}}>{this.state.workout.name}</h2>
+          <p style={{textAlign: 'center'}}>({this.state.workout.keywords})</p>
         </div>
       )
     }

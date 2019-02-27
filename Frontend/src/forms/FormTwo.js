@@ -20,12 +20,12 @@ export default class FormTwo extends Component {
     document.getElementById('form').reset()
   }
 
-  signupRequest = (e) => {
+  workoutRequest = (e) => {
     this.setState({
       superSet: {
         name: e.target.name.value,
-        keywords: e.target.keywords.value,
-        workout: this.props.workout_id,
+        keywords: [e.target.keywords.value],
+        workouts: [this.props.workout_id],
         sets: {
             reps: e.target.setReps.value,
             excercises: [
@@ -54,10 +54,10 @@ export default class FormTwo extends Component {
   render() {
     return (
       <div>
-        <h1>Superset {this.state.counter}</h1>
+        <h3>Superset {this.state.counter}</h3>
         <form id='form' onSubmit={(e) => {
             e.preventDefault()
-            this.signupRequest(e)
+            this.workoutRequest(e)
         }}>
            <p>Name of SuperSet: <input name='name' type='text' /></p>
            <p>keywords: <input name='keywords' type='text'/></p>
