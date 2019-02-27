@@ -2,42 +2,84 @@ import React, { Component } from 'react'
 
 export default class FormTwo extends Component {
   state = {
-      counter: 1
+      counter: 1,
+      superSet: {}
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('submitted')
+  postSuperset = () => {
+    fetch(`http://localhost:5000/supersets`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state.superSet)
+    })
   }
+
+  clearForm = () => {
+    document.getElementById('form').reset()
+  }
+
+  signupRequest = (e) => {
+    this.setState({
+      superSet: {
+        name: e.target.name.value,
+        keywords: e.target.keywords.value,
+        workout: this.props.workout_id,
+        sets: {
+            reps: e.target.setReps.value,
+            excercises: [
+                {
+                    name: e.target.excerciseOne.value,
+                    reps: e.target.repsOne.value
+                },
+                {
+                    name: e.target.excerciseTwo.value,
+                    reps: e.target.repsTwo.value
+                },
+                {
+                    name: e.target.excerciseThree.value,
+                    reps: e.target.repsThree.value
+                },
+            ]
+      }},
+      counter: this.state.counter + 1
+    }, () => {
+      this.postSuperset()
+      this.clearForm()
+    }
+    )
+  }
+
   render() {
     return (
       <div>
-        <h1>Make a Super Set Workout Component</h1>
-        <form onSubmit={this.handleSubmit}>
+        <h1>Superset {this.state.counter}</h1>
+        <form id='form' onSubmit={(e) => {
+            e.preventDefault()
+            this.signupRequest(e)
+        }}>
            <p>Name of SuperSet: <input name='name' type='text' /></p>
-           <p>keywords: <input name='keywords'/></p>
-           <h4>Set{this.state.counter}: </h4>
+           <p>keywords: <input name='keywords' type='text'/></p>
+           <p>Set Reps: <input name='setReps' type='number'/></p>
            <div>
-            <div class="stack">
-              <div class='row'>
-                <div class='col'>
-                 <p>Excercise:<input name='' type='text'/></p>
-                 <p>Reps: <input name='' type='number'/></p>
-                 <input type='submit' value='Submit'/>
+              <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                <div style={{flexBasis: '30%'}}>
+                 <p>Excercise:<input name='excerciseOne' type='text'/></p>
+                 <p>Reps: <input name='repsOne' type='number'/></p>
                </div>  
-                <div class='col'>
-                 <p>Excercise:<input name='' type='text'/></p>
-                 <p>Reps: <input name='' type='number'/></p>
-                 <input type='submit' value='Submit'/>
+                <div style={{flexBasis: '30%'}}>
+                 <p>Excercise:<input name='excerciseTwo' type='text'/></p>
+                 <p>Reps: <input name='repsTwo' type='number'/></p>
                </div>  
-                <div class='col'>
-                 <p>Excercise:<input name='' type='text'/></p>
-                 <p>Reps: <input name='' type='number'/></p>
-                 <input type='submit' value='Submit'/>
-               </div>  
+                <div style={{flexBasis: '30%'}}>
+                 <p>Excercise:<input name='excerciseThree' type='text'/></p>
+                 <p>Reps: <input name='repsThree' type='number'/></p>
+            </div>  
+            
           </div>
           </div>
-          </div>
+          <input type='submit' value='Save' />
           </form>
       </div>
     )

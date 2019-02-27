@@ -15,6 +15,7 @@ export default class Signup extends Component {
       },
       body: JSON.stringify(this.state.newTrainer)
     })
+      .then(res => res.json())
   }
 
   clearForm = () => {

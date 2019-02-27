@@ -14,24 +14,30 @@ export default class NewExcercise extends Component {
     fetch('http://localhost:5000/trainers')
         .then(res => res.json())
         .then(trainers => this.setState({ trainers }))
+        .catch(error => {
+          console.log('didnt work :(', error)
+        })
   }
 
   componentDidMount() { 
       this.fetchTrainers()
   }
 
+  setWorkout = (workout_id) => {this.setState({workout_id})}
   renderFormTwo = () => {
     this.setState({
-      formTwo: true,
-      workout_id: 
+      formTwo: true
     })}
+
   render() {
     return (
       <div>
         <h1 style={{textAlign: 'center'}}>Workout Creator</h1>
-        <FormOne trainers={this.state.trainers} renderFormTwo={this.renderFormTwo}/>
-        {this.state.formTwo ? <FormTwo /> : null}
+        <FormOne trainers={this.state.trainers} renderFormTwo={this.renderFormTwo} setWorkout={this.setWorkout}/>
+        {this.state.formTwo ? <FormTwo workout_id={this.state.workout_id}/> : null}
       </div>
     )
   }
 }
+
+

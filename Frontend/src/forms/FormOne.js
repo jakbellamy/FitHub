@@ -10,13 +10,25 @@ export default class FormOne extends Component {
     formOneSubmit: false
   }
 
+  postRequest = (e) => {
+    e.preventDefault()
+    fetch(`http://localhost:5000/workouts`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state.workout)
+    })
+    .then(res => res.json())
+    .then(res => this.props.setWorkout(res))
+  }
+
   submitFormOne = () => {
     this.setState({
       formOneSubmit: true
     }, () => {this.props.renderFormTwo()})} 
 
   handleSubmit = (e) => {
-    e.preventDefault()
     this.setState({
       workout: {
         name: e.target.name.value,
@@ -24,6 +36,7 @@ export default class FormOne extends Component {
         keywords: e.target.Keyword.value
       }
     }, () => {
+      this.postRequest(e)
       this.submitFormOne()
     }
     )
