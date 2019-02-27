@@ -21,7 +21,7 @@ export default class NewExcercise extends Component {
   render() {
     return (
       <div>
-        <h1 style={{textAlign: 'center'}}>Excercise Creator</h1>
+        <h1 style={{textAlign: 'center'}}>Workout Creator</h1>
         {/* {() => {
         switch(this.state.view) {
           case 'Signup':
