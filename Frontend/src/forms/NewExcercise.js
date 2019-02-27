@@ -4,7 +4,7 @@ import FormOne from './FormOne'
 export default class NewExcercise extends Component {
   
   state = {
-      view: '',
+      view: 'Signup',
       trainers: []
   }
 
@@ -14,18 +14,23 @@ export default class NewExcercise extends Component {
         .then(trainers => this.setState({ trainers }))
   }
 
+  componentDidMount() { 
+      this.fetchTrainers()
+  }
+
   render() {
     return (
       <div>
         <h1 style={{textAlign: 'center'}}>Excercise Creator</h1>
-        {(() => {
+        {/* {() => {
         switch(this.state.view) {
           case 'Signup':
             return <FormOne trainers={this.state.trainers}/>
           default:
             return <FormOne trainers={this.state.trainers}/>
         }
-      })()}
+    }} */}
+        <FormOne trainers={this.state.trainers} />
       </div>
     )
   }
