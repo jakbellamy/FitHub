@@ -5,7 +5,8 @@ export default class NewExcercise extends Component {
   
   state = {
       view: 'Signup',
-      trainers: []
+      trainers: [],
+      formTwo: false
   }
 
   fetchTrainers = () => {
@@ -18,19 +19,13 @@ export default class NewExcercise extends Component {
       this.fetchTrainers()
   }
 
+  renderFormTwo = () => {this.setState({formTwo: true})}
   render() {
     return (
       <div>
         <h1 style={{textAlign: 'center'}}>Workout Creator</h1>
-        {/* {() => {
-        switch(this.state.view) {
-          case 'Signup':
-            return <FormOne trainers={this.state.trainers}/>
-          default:
-            return <FormOne trainers={this.state.trainers}/>
-        }
-    }} */}
         <FormOne trainers={this.state.trainers} />
+        {this.state.formTwo ? }
       </div>
     )
   }

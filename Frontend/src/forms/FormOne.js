@@ -1,103 +1,62 @@
-// import React, { Component } from 'react'
-// import TagsInput from 'react-tagsinput'
-// import 'react-tagsinput/react-tagsinput.css'
+import React, { Component } from 'react'
+import TagsInput from 'react-tagsinput'
+import 'react-tagsinput/react-tagsinput.css'
 
-// export default class FormOne extends Component {
+export default class FormOne extends Component {
 
-//   state = {
-//     workout: {},
-//     tags: []
-//   }
+  state = {
+    workout: {},
+    tags: [],
+    formOneSubmit: false
+  }
 
-//   handleChange = (e) => {
-//     console.log(e.target)
-//   }
+  submitFormOne = () => {
+    this.setState({
+      formOneSubmit: true
+    }, () => {
+      this.props.renderFormTwo()
+    })} 
 
-//   render() {
-//     return (
-//       <div>
-//         <form>
-//          <p>Name of Workout: <input type='text' /></p>
-//          <p>Trainer: <select style={{textAlign: 'right'}}>
-//             {this.props.trainers.map(trainer => {
-//               return <option value={trainer}>{trainer.name}</option>
-//             })}
-//         </select></p>
-//         </form>
-//         <TagsInput value={'hey'}onChange={(e) => this.handleChange(e)} />
-//       </div>
-//     )
-//   }
-// }
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.setState({
+      workout: {
+        name: e.target.name.value,
+        trainer: e.target.trainer.value,
+        keywords: e.target.Keyword.value
+      }
+    }, () => {
+      this.submitFormOne()
+    }
+    )
+  }
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { WithContext as ReactTags } from 'react-tag-input';
- 
-const KeyCodes = {
-  comma: 188,
-  enter: 13,
-};
- 
-const delimiters = [KeyCodes.comma, KeyCodes.enter];
- 
-export default class FormOne extends React.Component {
-    constructor(props) {
-        super(props);
- 
-        this.state = {
-            tags: [
-                { id: "Thailand", text: "Thailand" },
-                { id: "India", text: "India" }
-             ],
-            suggestions: [
-                { id: 'USA', text: 'USA' },
-                { id: 'Germany', text: 'Germany' },
-                { id: 'Austria', text: 'Austria' },
-                { id: 'Costa Rica', text: 'Costa Rica' },
-                { id: 'Sri Lanka', text: 'Sri Lanka' },
-                { id: 'Thailand', text: 'Thailand' }
-             ]
-        };
-        this.handleDelete = this.handleDelete.bind(this);
-        this.handleAddition = this.handleAddition.bind(this);
-        this.handleDrag = this.handleDrag.bind(this);
+
+  render() {
+    if(!this.state.formOneSubmit){
+      return (
+        <div>
+          <form onSubmit={this.handleSubmit}>
+           <p>Name of Workout: <input name='name' type='text' /></p>
+           <p>Trainer: <select name='trainer' style={{textAlign: 'right'}}>
+              {this.props.trainers.map(trainer => {
+                return <option value={trainer._id}>{trainer.name}</option>
+              })}
+          </select></p>
+          <p>Keywords: <input name='Keyword' type='text' /></p>
+          <input type='submit' value='Submit'/>
+          </form>
+        </div>
+      )
     }
- 
-    handleDelete(i) {
-        const { tags } = this.state;
-        this.setState({
-         tags: tags.filter((tag, index) => index !== i),
-        });
+    else{
+      return(
+        <div>
+          <h3>{this.state.workout.name}</h3>
+          <p>By User #{this.state.workout.trainer}</p>
+        </div>
+      )
     }
- 
-    handleAddition(tag) {
-        this.setState(state => ({ tags: [...state.tags, tag] }));
-    }
- 
-    handleDrag(tag, currPos, newPos) {
-        const tags = [...this.state.tags];
-        const newTags = tags.slice();
- 
-        newTags.splice(currPos, 1);
-        newTags.splice(newPos, 0, tag);
- 
-        // re-render
-        this.setState({ tags: newTags });
-    }
- 
-    render() {
-        const { tags, suggestions } = this.state;
-        return (
-            <div>
-                <ReactTags tags={tags}
-                    suggestions={suggestions}
-                    handleDelete={this.handleDelete}
-                    handleAddition={this.handleAddition}
-                    handleDrag={this.handleDrag}
-                    delimiters={delimiters} />
-            </div>
-        )
-    }
-};
- 
+  }
+}
+
