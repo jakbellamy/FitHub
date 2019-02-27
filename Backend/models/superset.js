@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const SupersetSchema = new Schema({
     name: {type: String, required: true},
-    keywords: [{type: String, unique: true, lowercase: true, required: true}],
+    keywords: [{type: String, lowercase: true, required: true}],
     sets:  {
             reps: {type: Number},
             excercises: [{

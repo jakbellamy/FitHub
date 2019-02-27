@@ -3,7 +3,7 @@ const router = express.Router();
 const Superset = require('../models/superset')
 
 router.get('/', (req, res, next) => {
-  Superset.find({}, 'action')
+  Superset.find({}, )
       .populate('workout')
       .then(data => res.json(data))
       .catch(next)
@@ -21,12 +21,12 @@ router.get('/:id', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  console.log(req)
+  console.log(req.body)
   let superset = new Superset({
     name: req.body.name,
     keywords: req.body.keywords,
-    sets: req.body.password,
-    workout: req.body.workout
+    sets: req.body.sets,
+    workouts: req.body.workouts
   })
   console.log(superset)
   superset.save(function(err){
