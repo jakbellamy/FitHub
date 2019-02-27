@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import FormOne from './FormOne'
-
+import FormTwo from './FormTwo'
 export default class NewExcercise extends Component {
   
   state = {
       view: 'Signup',
       trainers: [],
-      formTwo: false
+      formTwo: false,
+      workout_id: null
   }
 
   fetchTrainers = () => {
@@ -19,13 +20,17 @@ export default class NewExcercise extends Component {
       this.fetchTrainers()
   }
 
-  renderFormTwo = () => {this.setState({formTwo: true})}
+  renderFormTwo = () => {
+    this.setState({
+      formTwo: true,
+      workout_id: 
+    })}
   render() {
     return (
       <div>
         <h1 style={{textAlign: 'center'}}>Workout Creator</h1>
-        <FormOne trainers={this.state.trainers} />
-        {this.state.formTwo ? }
+        <FormOne trainers={this.state.trainers} renderFormTwo={this.renderFormTwo}/>
+        {this.state.formTwo ? <FormTwo /> : null}
       </div>
     )
   }

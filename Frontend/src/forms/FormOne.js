@@ -13,9 +13,7 @@ export default class FormOne extends Component {
   submitFormOne = () => {
     this.setState({
       formOneSubmit: true
-    }, () => {
-      this.props.renderFormTwo()
-    })} 
+    }, () => {this.props.renderFormTwo()})} 
 
   handleSubmit = (e) => {
     e.preventDefault()
@@ -53,6 +51,7 @@ export default class FormOne extends Component {
       return(
         <div>
           <h3>{this.state.workout.name}</h3>
+          <p>({this.state.workout.keywords})</p>
           <p>By User #{this.state.workout.trainer}</p>
         </div>
       )

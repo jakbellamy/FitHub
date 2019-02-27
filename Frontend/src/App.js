@@ -42,8 +42,6 @@ class App extends Component {
             return <Library />
           case 'NewExcercise':
             return <NewExcercise />
-          // default:
-          //   return <Signup />
           default:
             return <NewExcercise />
         }
