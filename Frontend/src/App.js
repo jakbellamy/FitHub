@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Login from './components/Login';
 import NewExcercise from './forms/NewExcercise';
 import WorkoutsLibrary from './library/WorkoutsLibrary';
+import StitchContainer from './workout stitcher/StitchContainer';
 
 class App extends Component {
   state = {
@@ -28,11 +29,13 @@ class App extends Component {
   switchLogin = () => {this.setState({view: 'Login'})}
   switchSignup = () => {this.setState({view: 'Signup'})}
   switchLibrary = () => {this.setState({view: 'Library'})}
+  switchStitcher = () => {this.setState({view: 'StitchContainer'})}
 
   render() {
     return (
       <div>
-        <Header login={this.switchLogin} signup={this.switchSignup}/>
+        <Header login={this.switchLogin} signup={this.switchSignup} stitchContainter={this.switchStitcher}/>
+
         {(() => {
         switch(this.state.view) {
           case 'Signup':
@@ -41,9 +44,12 @@ class App extends Component {
             return <Login temporaryButton={this.temporaryButton}/>
           case 'NewExcercise':
             return <NewExcercise switchLibrary={this.switchLibrary}/>
+          case 'StitchContainer':
+            return <StitchContainer />
           default:
-            return <WorkoutsLibrary />
+            return <StitchContainer />
         }
+
       })()}
       </div>
     )

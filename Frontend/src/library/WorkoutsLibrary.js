@@ -19,14 +19,7 @@ export default class WorkoutsLibrary extends Component {
     })
   }
 
-  fetchSupersets = () => {
-    fetch('http://localhost:5000/supersets')
-    .then(res => res.json())
-    .then(supersets => this.setState({ supersets }))
-    .catch(error => {
-      console.log('superets didnt fetch :(', error)
-    })
-  }
+
 
   setFilter = (e) => {
     this.setState({
@@ -36,7 +29,6 @@ export default class WorkoutsLibrary extends Component {
 
   componentDidMount(){
     this.fetchWorkouts()
-    this.fetchSupersets()
   }
   
   render() {
