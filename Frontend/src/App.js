@@ -31,6 +31,7 @@ class App extends Component {
   switchLibrary = () => {this.setState({view: 'Library'})}
   switchStitcher = () => {this.setState({view: 'StitchContainer'})}
 
+  
   render() {
     return (
       <div>

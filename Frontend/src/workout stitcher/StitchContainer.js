@@ -23,16 +23,22 @@ export default class StitchContainer extends Component {
     this.fetchSupersets()
   }
 
+  setSupersets = (supersets) => {this.setState({supersets})}
+
   render() {
     return (
-    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-      <div style={{flexBasis: '65%'}}>
+    <div style={{display: 'flex', justifyContent: 'center'}}>
+
+      <div style={{flexBasis: '50%'}}>
         <StitchPage />
       </div>
-
-      <div style={{flexBasis: '35%'}}>
-        <SupersetsLib supersets={this.state.supersets}/>
+      <div style={{flexBasis: '40%'}}>
+        <SupersetsLib supersets={this.state.supersets} setSupersets={this.setSupersets}/>
       </div>
+      
+      
+
+      
     </div>
     )
   }
