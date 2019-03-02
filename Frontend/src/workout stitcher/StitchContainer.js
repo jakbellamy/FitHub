@@ -24,17 +24,21 @@ export default class StitchContainer extends Component {
     this.fetchSupersets()
   }
 
+  setNewWorkoutSets = (newWorkoutSets) => {this.setState({newWorkoutSets})}
+
   setSupersets = (supersets) => {this.setState({supersets})}
 
   render() {
     return (
     <div style={{display: 'flex', justifyContent: 'center'}}>
 
-      <div style={{flexBasis: '50%'}}>
-        <StitchPage />
-      </div>
-      <div style={{flexBasis: '40%'}}>
-        <SupersetsLib supersets={this.state.supersets} setSupersets={this.setSupersets}/>
+      <div style={{flexBasis: '80%'}}>
+        <SupersetsLib 
+        supersets={this.state.supersets} 
+        setSupersets={this.setSupersets}
+        setNewWorkoutSets={this.setNewWorkoutSets} 
+        newWorkoutSets={this.state.newWorkoutSets}
+        />
       </div>
       
       
