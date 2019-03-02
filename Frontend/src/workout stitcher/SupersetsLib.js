@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Container, Draggable } from 'react-smooth-dnd'
 import {ApplyDrag} from './ApplyDrag'
+import SuperSetCard from './SuperSetCard';
 
 export default class SupersetsLib extends Component {
   render() {
@@ -10,8 +11,8 @@ export default class SupersetsLib extends Component {
           this.props.setSupersets(ApplyDrag(this.props.supersets, e))}>
           {this.props.supersets.map(superset => {
             return (
-              <Draggable key={superset.id}>
-                <div className="draggabl-item">{superset.name}</div>
+              <Draggable key={superset._id}>
+                <SuperSetCard key={superset._id} {...superset} />
               </Draggable>
             );
           })}

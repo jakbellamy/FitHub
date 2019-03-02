@@ -7,6 +7,7 @@ export default class StitchContainer extends Component {
   state = {
     currentUser: null,
     supersets: [],
+    newWorkoutSets: [],
     newWorkout: {}
   }
 
