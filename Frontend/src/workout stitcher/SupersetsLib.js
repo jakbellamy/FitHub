@@ -12,8 +12,7 @@ export default class SupersetsLib extends Component {
 
   groupStyle = {
     marginLeft: '50px',
-    flex: 1,
-    borderStyle: 'solid'
+    flex: 1
   }
 
   render() {
@@ -39,6 +38,7 @@ export default class SupersetsLib extends Component {
               }
           </Container>
 
+        
           <Container 
             style={this.groupStyle}
             groupName='things'
@@ -54,7 +54,7 @@ export default class SupersetsLib extends Component {
                   })
                 }
             </Container>
-            
+
         </div>
       </div>
     )
