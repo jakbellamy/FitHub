@@ -4,14 +4,14 @@ import {ApplyDrag} from './ApplyDrag'
 import SuperSetCard from './SuperSetCard';
 
 export default class SupersetsLib extends Component {
-  
+
   groupStyle = {
     marginLeft: '50px',
     flex: 1
   }
 
   render() {
-    console.log(this.props)
+    console.log(this.props.filtered)
     return (
       <div style={{overflow:'auto'}}>
         <div style={{ display: 'flex', justifyContent: 'stretch', marginTop: '50px', marginRight: '50px', height: '1000px', width: '1000px', overflow: 'auto' }}>

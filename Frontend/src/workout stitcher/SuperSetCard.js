@@ -7,9 +7,16 @@ import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/
 import ExerciseCard from './ExerciseCard';
 
 export default class SuperSetCard extends Component {
+
+  cardStyle = {
+    // display: 'block',
+    width: '40vw',
+    height: '25vw'
+  } 
+
   render() {
     return (
-      <Card>
+      <Card style={this.cardStyle}>
         <CardContent>
           <Typography style={{textAlign: 'center'}} variant="h5" component="h3" color="black" gutterBottom>
             {this.props.name}
