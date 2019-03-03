@@ -7,6 +7,8 @@ import Login from './components/Login';
 import NewExcercise from './forms/NewExcercise';
 import WorkoutsLibrary from './library/WorkoutsLibrary';
 import StitchContainer from './workout stitcher/StitchContainer';
+import SuperBuilder from './experimentalForms/SuperBuilder';
+import NewSuperSet from './workout stitcher/NewSuperSet';
 
 class App extends Component {
   state = {
@@ -48,7 +50,7 @@ class App extends Component {
           case 'StitchContainer':
             return <StitchContainer />
           default:
-            return <StitchContainer />
+            return <NewSuperSet />
         }
 
       })()}
