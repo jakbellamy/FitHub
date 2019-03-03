@@ -48,7 +48,7 @@ class App extends Component {
           case 'StitchContainer':
             return <StitchContainer />
           default:
-            return <StitchContainer />
+            return <NewExcercise />
         }
 
       })()}

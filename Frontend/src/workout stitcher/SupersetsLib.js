@@ -10,32 +10,53 @@ export default class SupersetsLib extends Component {
 
   drop = (dropped) => {this.setState({dropped})}
 
+  groupStyle = {
+    marginLeft: '50px',
+    flex: 1,
+    borderStyle: 'solid'
+  }
+
   render() {
     console.log(this.props)
     return (
-      <div className='superset-library'> 
+      <div className='superset-library' style={{ display: 'flex', justifyContent: 'stretch', marginTop: '50px', marginRight: '50px' }}> 
 
-        <Container groupName='things' onDrop={e => 
-          this.props.setSupersets(ApplyDrag(this.props.supersets, e))}>
+        <div style={this.groupStyle}>
+          <Container 
+            groupName='things' 
+            behaviour="copy" 
+            getChildPayload={i => this.props.supersets[i]}
+            onDrop={e => this.props.setSupersets(ApplyDrag(this.props.supersets, e))}>
+              {/* <p style={{textAlign: 'center'}}>Supersets Library</p> */}
+              {
+                this.props.supersets.map(superset => {
+                 return (
+                   <Draggable key={superset._id}>
+                      <SuperSetCard key={superset._id} {...superset} />
+                    </Draggable>  
+                 );
+                })
+              }
+          </Container>
+        </div>
 
-          
-          {this.props.supersets.map(superset => {
-            return (
-
-              <Draggable key={superset._id}>
-              
-                <SuperSetCard key={superset._id} {...superset} />
-              </Draggable>
-             
-            );
-          })}
-         
-        </Container>
-        <h1>testinginsdf</h1>
-        <Container groupName='things' onDrop={e => 
-          this.drop(ApplyDrag(this.dropped, e))}>
-            <Draggable>text</Draggable>
-        </Container>
+        <div style={this.groupStyle}>
+          <Container 
+            groupName='things'
+            getChildPayload={i => this.props.newWorkoutSets[i]} 
+            onDrop={e => this.props.setNewWorkoutSets(ApplyDrag(this.props.newWorkoutSets, e))}>
+              {/* <p style={{textAlign: 'center'}}>New Workout</p> */}
+              {
+                this.props.newWorkoutSets.map(superset => {
+                  return (
+                    <Draggable key={superset._id}>
+                       <SuperSetCard key={superset._id} {...superset} />
+                    </Draggable>  
+                  )
+                })
+              }
+          </Container>
+        </div>
       </div>
     )
   }
