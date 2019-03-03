@@ -21,13 +21,12 @@ export default class SupersetsLib extends Component {
     return (
       <div className='superset-library' style={{ display: 'flex', justifyContent: 'stretch', marginTop: '50px', marginRight: '50px' }}> 
 
-        <div style={this.groupStyle}>
           <Container 
+            style={this.groupStyle}
             groupName='things' 
             behaviour="copy" 
             getChildPayload={i => this.props.supersets[i]}
             onDrop={e => this.props.setSupersets(ApplyDrag(this.props.supersets, e))}>
-              {/* <p style={{textAlign: 'center'}}>Supersets Library</p> */}
               {
                 this.props.supersets.map(superset => {
                  return (
@@ -38,14 +37,12 @@ export default class SupersetsLib extends Component {
                 })
               }
           </Container>
-        </div>
 
-        <div style={this.groupStyle}>
           <Container 
+            style={this.groupStyle}
             groupName='things'
             getChildPayload={i => this.props.newWorkoutSets[i]} 
             onDrop={e => this.props.setNewWorkoutSets(ApplyDrag(this.props.newWorkoutSets, e))}>
-              {/* <p style={{textAlign: 'center'}}>New Workout</p> */}
               {
                 this.props.newWorkoutSets.map(superset => {
                   return (
@@ -56,7 +53,6 @@ export default class SupersetsLib extends Component {
                 })
               }
           </Container>
-        </div>
       </div>
     )
   }
