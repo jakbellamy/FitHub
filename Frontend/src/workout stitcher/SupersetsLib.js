@@ -4,12 +4,7 @@ import {ApplyDrag} from './ApplyDrag'
 import SuperSetCard from './SuperSetCard';
 
 export default class SupersetsLib extends Component {
-  state = {
-    dropped: []
-  }
-
-  drop = (dropped) => {this.setState({dropped})}
-
+  
   groupStyle = {
     marginLeft: '50px',
     flex: 1
@@ -42,6 +37,7 @@ export default class SupersetsLib extends Component {
           <Container 
             style={this.groupStyle}
             groupName='things'
+            removeOnDropOut='true'
             getChildPayload={i => this.props.newWorkoutSets[i]} 
             onDrop={e => this.props.setNewWorkoutSets(ApplyDrag(this.props.newWorkoutSets, e))}>
               {

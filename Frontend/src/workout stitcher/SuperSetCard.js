@@ -19,13 +19,6 @@ export default class SuperSetCard extends Component {
             return <ExerciseCard {...exercise} />
           })}
 
-          {/* <Typography style={{flexBasis: '50%'}} variant="body2" >
-            {this.props.sets.excercises.map(exercise => {
-              let reps = exercise.reps
-              let name = exercise.name
-              return reps + 'X ' + name})} x 
-          </Typography> */}
-
         </CardContent>
       </Card>
     )
