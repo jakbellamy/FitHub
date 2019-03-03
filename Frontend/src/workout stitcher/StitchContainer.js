@@ -39,17 +39,12 @@ export default class StitchContainer extends Component {
     <div style={{display: 'flex', justifyContent: 'center'}}>
       <div style={{flexBasis: '80%'}}>
         <SupersetsLib 
-          // filtered={this.filteredSets} 
           supersets={this.state.supersets.filter(superset => superset.name.includes(this.state.filter))}
           setSupersets={this.setSupersets}
           setNewWorkoutSets={this.setNewWorkoutSets} 
           newWorkoutSets={this.state.newWorkoutSets}
         />
       </div>
-      
-      
-
-      
     </div>
     </>
     )
