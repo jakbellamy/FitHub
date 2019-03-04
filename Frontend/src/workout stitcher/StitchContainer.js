@@ -31,19 +31,18 @@ export default class StitchContainer extends Component {
   onSearch = (e) => {this.setState({filter: e.target.value})}
 
   render() {
-    console.log(this.state.supersets.filter(superset => superset.name.includes('A')))
-    console.log(this.state.searchFilter)
     return (
     <>
     <SearchField onSearch={this.onSearch}/>
     <div style={{display: 'flex', justifyContent: 'center'}}>
       <div style={{flexBasis: '80%'}}>
-        <SupersetsLib 
-          supersets={this.state.supersets.filter(superset => superset.name.includes(this.state.filter))}
+        <SupersetsLib supersets={this.state.supersets.filter(superset => {
+            return superset.name.includes(this.state.filter) || superset.keywords.filter( keyword => {
+              return keyword.includes(this.state.filter)}
+          )})}
           setSupersets={this.setSupersets}
           setNewWorkoutSets={this.setNewWorkoutSets} 
-          newWorkoutSets={this.state.newWorkoutSets}
-        />
+          newWorkoutSets={this.state.newWorkoutSets}/>
       </div>
     </div>
     </>

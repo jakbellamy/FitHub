@@ -5,13 +5,16 @@ import SuperSetCard from './SuperSetCard';
 
 export default class SupersetsLib extends Component {
 
+  
   groupStyle = {
     marginLeft: '50px',
-    flex: 1
+    flex: 1,
   }
 
+ 
+
   render() {
-    console.log(this.props.filtered)
+    let x = 0
     return (
       <div style={{overflow:'auto'}}>
         <div style={{ display: 'flex', justifyContent: 'stretch', marginTop: '50px', marginRight: '50px', height: '1000px', width: '1000px', overflow: 'auto' }}>
@@ -27,6 +30,7 @@ export default class SupersetsLib extends Component {
                  return (
                    <Draggable key={superset._id}>
                       <SuperSetCard key={superset._id} {...superset} />
+                      
                     </Draggable>  
                  );
                 })
@@ -39,12 +43,13 @@ export default class SupersetsLib extends Component {
             groupName='things'
             removeOnDropOut='true'
             getChildPayload={i => this.props.newWorkoutSets[i]} 
-            onDrop={e => this.props.setNewWorkoutSets(ApplyDrag(this.props.newWorkoutSets, e))}>
+            onDrop={e => (this.props.setNewWorkoutSets(ApplyDrag(this.props.newWorkoutSets, e)))}>
               {
                 this.props.newWorkoutSets.map(superset => {
                   return (
-                    <Draggable key={superset._id}>
-                        <SuperSetCard key={superset._id} {...superset} />
+                    <Draggable key={superset._id + x++}>
+                        <SuperSetCard key={superset._id + x++} {...superset} />
+                        {console.log('THIS IS THE SUPERSET ID PLZ DONT FORGET', superset._id)}
                       </Draggable>  
                   );
                   })
