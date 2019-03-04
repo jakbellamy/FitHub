@@ -9,6 +9,7 @@ export default class SupersetsLib extends Component {
   groupStyle = {
     marginLeft: '50px',
     flex: 1,
+    justifyContent: 'stretch',
   }
 
  
@@ -17,7 +18,7 @@ export default class SupersetsLib extends Component {
     let x = 0
     return (
       <div style={{overflow:'auto'}}>
-        <div style={{ display: 'flex', justifyContent: 'stretch', marginTop: '50px', marginRight: '50px', height: '1000px', width: '1000px', overflow: 'auto' }}>
+        <div style={{ display: 'flex', marginTop: '50px', marginRight: '50px', height: '1000px', width: 'auto', overflow: 'auto' }}>
 
           <Container 
             style={this.groupStyle}
@@ -30,7 +31,6 @@ export default class SupersetsLib extends Component {
                  return (
                    <Draggable key={superset._id}>
                       <SuperSetCard key={superset._id} {...superset} />
-                      
                     </Draggable>  
                  );
                 })
@@ -49,7 +49,6 @@ export default class SupersetsLib extends Component {
                   return (
                     <Draggable key={superset._id + x++}>
                         <SuperSetCard key={superset._id + x++} {...superset} />
-                        {console.log('THIS IS THE SUPERSET ID PLZ DONT FORGET', superset._id)}
                       </Draggable>  
                   );
                   })
