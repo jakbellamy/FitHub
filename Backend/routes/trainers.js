@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Trainer = require('../models/trainer')
+const Validator = require("validator");
+const isEmpty = require("is-empty");
 
 router.get('/', (req, res, next) => {
   Trainer.find()
