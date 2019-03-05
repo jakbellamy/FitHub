@@ -4,23 +4,20 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
+import { FormControl, Typography } from '@material-ui/core';
 
 export default class SearchField extends Component {
   render() {
     return (
+      <>
+      <Typography variant="h6" style={{margin: '0% 2% 0% 2%'}}> Filter
         <TextField
-          id="standard-full-width"
-          label="Filter Supersets"
-          style={{ margin: 8 }}
-          placeholder="Placeholder"
-        //   helperText="probs gonna stick validation flash here"
-          margin="normal"
-          InputLabelProps={{
-            shrink: true,
-          }}
+          style={{margin: '0% 2% 0% 2%'}}
+          placeholder="ex. Ab Engagers"
           onChange={(e) => this.props.onSearch(e)}
-        />
-
+      />
+      </Typography>
+      </>
     )
   }
 }

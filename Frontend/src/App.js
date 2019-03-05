@@ -29,16 +29,11 @@ class App extends Component {
   temporaryButton = (e) => {
     history.push('/stitchlab')
   }
-  switchLogin = () => (
-   <Redirect push to="/login" />,
-   console.log('hit')
-  )
-  
+
   switchSignup = () => {this.setState({view: 'Signup'})}
   switchLibrary = () => {this.setState({view: 'Library'})}
   switchStitcher = () => {this.setState({view: 'StitchContainer'})}
-
-  
+ 
   render() {
     return (
       <>

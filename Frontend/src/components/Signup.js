@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import withStyles from '@material-ui/core/styles/withStyles'
-import {Link} from 'react-router-dom'
 import {history} from '../history'
+
 export default class Signup extends Component {
   
   state = {
@@ -35,9 +33,10 @@ export default class Signup extends Component {
         username: e.target.username.value,
         password: e.target.password.value
       }
-    }, () => {
-      this.postRequest(e)
-      history.push('/login')
+    }, 
+      () => {
+        this.postRequest(e)
+        history.push('/login')
       }
     )
   }
