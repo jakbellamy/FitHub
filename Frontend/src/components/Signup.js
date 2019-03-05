@@ -7,7 +7,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles'
-
+import {Link} from 'react-router-dom'
+import {history} from '../history'
 export default class Signup extends Component {
   
   state = {
@@ -26,10 +27,6 @@ export default class Signup extends Component {
       .then(res => res.json())
   }
 
-  clearForm = () => {
-    document.getElementById('form').reset()
-  }
-
   signupRequest = (e) => {
     e.preventDefault()
     this.setState({
@@ -40,8 +37,8 @@ export default class Signup extends Component {
       }
     }, () => {
       this.postRequest(e)
-      this.clearForm()
-    }
+      history.push('/login')
+      }
     )
   }
 

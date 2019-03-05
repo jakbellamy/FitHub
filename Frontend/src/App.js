@@ -12,7 +12,6 @@ import {history} from './history'
 
 class App extends Component {
   state = {
-    view: '',
     loggedUser: {},
     loggedIn: false
   }
@@ -27,7 +26,9 @@ class App extends Component {
     })
  }
 
-  temporaryButton = () => {this.setState({view: 'NewExcercise'})}
+  temporaryButton = (e) => {
+    history.push('/stitchlab')
+  }
   switchLogin = () => (
    <Redirect push to="/login" />,
    console.log('hit')
@@ -46,7 +47,9 @@ class App extends Component {
            <Header login={this.switchLogin} signup={this.switchSignup} stitchContainter={this.switchStitcher}/>
               <Switch>
                 <Route path='/login'><Login temporaryButton={this.temporaryButton}/></Route>
-                <Route path='/signup'><Signup/></Route>
+                <Route path='/signup'><Signup history={this.history}/></Route>
+                <Route path='/stitchlab'><StitchContainer /></Route>
+                <Route path='/newexercise'><NewExcercise /></Route>
               </Switch>
           </>
         </Router>
@@ -56,18 +59,3 @@ class App extends Component {
 }
 
 export default App;
-
-// {(() => {
-//   switch(this.state.view) {
-//     case 'Signup':
-//       return <Signup />
-//     case 'Login':
-//       return <Login temporaryButton={this.temporaryButton}/>
-//     case 'NewExcercise':
-//       return <NewExcercise switchLibrary={this.switchLibrary}/>
-//     case 'StitchContainer':
-//       return <StitchContainer />
-//     default:
-//       return <Signup />
-//   }
-// })()}

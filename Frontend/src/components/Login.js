@@ -7,6 +7,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles'
+import {Link} from 'react-router-dom'
+import {history} from '../history'
 export default class Login extends Component {
 
   state = {
@@ -28,7 +30,7 @@ export default class Login extends Component {
         Login
       </Typography>
 
-      <form onSubmit={this.signupRequest} id='form' style={{width: 'auto'}}>
+      <form onSubmit={() => {history.push('/stitchlab')}} id='form' style={{width: 'auto'}}>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="username">username</InputLabel>
             <Input id="username" type="text" name="username" autoComplete="username" autoFocus />
