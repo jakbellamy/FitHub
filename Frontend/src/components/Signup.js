@@ -51,7 +51,9 @@ export default class Signup extends Component {
           style={{
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center'
+            alignItems: 'center',
+            padding: "2.5% 10% 5% 10%",
+            margin: "0% 25% 0% 25%"
           }}>
 
           <Typography component="h1" variant="h5">
