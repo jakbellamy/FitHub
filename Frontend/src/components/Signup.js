@@ -45,6 +45,7 @@ export default class Signup extends Component {
     )
   }
 
+  
   render() {
     return (
         <Paper 
@@ -79,7 +80,7 @@ export default class Signup extends Component {
               fullWidth
               variant="contained"
               color="primary">
-              Sign in
+              Submit
               </Button>
 
           </form>
