@@ -7,6 +7,8 @@ import Login from './components/Login';
 import NewExcercise from './forms/NewExcercise';
 import WorkoutsLibrary from './library/WorkoutsLibrary';
 import StitchContainer from './workout stitcher/StitchContainer';
+import { Router, Route, Switch, Redirect } from 'react-router-dom'
+import {history} from './history'
 
 class App extends Component {
   state = {
@@ -26,7 +28,11 @@ class App extends Component {
  }
 
   temporaryButton = () => {this.setState({view: 'NewExcercise'})}
-  switchLogin = () => {this.setState({view: 'Login'})}
+  switchLogin = () => (
+   <Redirect push to="/login" />,
+   console.log('hit')
+  )
+  
   switchSignup = () => {this.setState({view: 'Signup'})}
   switchLibrary = () => {this.setState({view: 'Library'})}
   switchStitcher = () => {this.setState({view: 'StitchContainer'})}
@@ -34,27 +40,34 @@ class App extends Component {
   
   render() {
     return (
-      <div>
-        <Header login={this.switchLogin} signup={this.switchSignup} stitchContainter={this.switchStitcher}/>
-
-        {(() => {
-        switch(this.state.view) {
-          case 'Signup':
-            return <Signup />
-          case 'Login':
-            return <Login temporaryButton={this.temporaryButton}/>
-          case 'NewExcercise':
-            return <NewExcercise switchLibrary={this.switchLibrary}/>
-          case 'StitchContainer':
-            return <StitchContainer />
-          default:
-            return <Signup />
-        }
-
-      })()}
-      </div>
+      <>
+        <Router history={history}>
+          <>
+           <Header login={this.switchLogin} signup={this.switchSignup} stitchContainter={this.switchStitcher}/>
+              <Switch>
+                <Route path='/login'><Login temporaryButton={this.temporaryButton}/></Route>
+                <Route path='/signup'><Signup/></Route>
+              </Switch>
+          </>
+        </Router>
+      </>
     )
   }
 }
 
 export default App;
+
+// {(() => {
+//   switch(this.state.view) {
+//     case 'Signup':
+//       return <Signup />
+//     case 'Login':
+//       return <Login temporaryButton={this.temporaryButton}/>
+//     case 'NewExcercise':
+//       return <NewExcercise switchLibrary={this.switchLibrary}/>
+//     case 'StitchContainer':
+//       return <StitchContainer />
+//     default:
+//       return <Signup />
+//   }
+// })()}

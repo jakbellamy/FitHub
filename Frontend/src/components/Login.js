@@ -9,6 +9,10 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles'
 export default class Login extends Component {
 
+  state = {
+    trainer: {}
+  }
+
   render() {
     return (
       <Paper 
