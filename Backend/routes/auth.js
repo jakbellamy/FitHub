@@ -19,10 +19,10 @@ router.post('/login', function(req, res) {
         trainer.comparePassword(req.body.password, function (err, isMatch) {
            console.log(req.body.password)
            console.log(trainer)
-          if (trainer.password === req.body.password) {
+          if (trainer.password === req.body.password || isMatch ) {
             let token = jwt.sign(trainer.toJSON(), keys.jwtSecret);
             // return the information including token as JSON
-            res.json({success: true, token: 'JWT ' + token});
+            res.json({success: true, token: 'JWT ' + token, trainer: trainer, secretThing: "Намери ми тайна"});
           } else {
             res.status(401).send({success: false, msg: ('Authentication failed. Wrong password.', req.body)});
           }

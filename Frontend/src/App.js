@@ -12,28 +12,15 @@ import {history} from './history'
 
 class App extends Component {
   state = {
-    loggedUser: {},
-    loggedIn: false
+    loggedIn: false,
+    trainer: null,
+    token: null
   }
 
-  loginRequest = (e) => {
-    e.preventDefault()
-    this.setState({
-      loggedUser: {
-        username: e.target.username.value,
-        password: e.target.password.value
-      }
-    })
- }
-
-  temporaryButton = (e) => {
-    history.push('/stitchlab')
+  setTrainerInState = (token, trainer) => {
+    this.setState({ token: token, trainer: trainer })
   }
 
-  switchSignup = () => {this.setState({view: 'Signup'})}
-  switchLibrary = () => {this.setState({view: 'Library'})}
-  switchStitcher = () => {this.setState({view: 'StitchContainer'})}
- 
   render() {
     return (
       <>
@@ -41,7 +28,7 @@ class App extends Component {
           <>
            <Header login={this.switchLogin} signup={this.switchSignup} stitchContainter={this.switchStitcher}/>
               <Switch>
-                <Route path='/login'><Login temporaryButton={this.temporaryButton}/></Route>
+                <Route path='/login'><Login trainer={this.state.trainer} setTrainer={this.setTrainerInState}/></Route>
                 <Route path='/signup'><Signup history={this.history}/></Route>
                 <Route path='/stitchlab'><StitchContainer /></Route>
                 <Route path='/newexercise'><NewExcercise /></Route>
