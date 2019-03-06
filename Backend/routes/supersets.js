@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Superset = require('../models/superset')
+const passport = require('passport');
+    require('../config/passport')(passport);
 
 router.get('/', (req, res, next) => {
   Superset.find({}, )
@@ -21,7 +23,6 @@ router.get('/:id', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  console.log(req.body)
   let superset = new Superset({
     name: req.body.name,
     keywords: req.body.keywords,

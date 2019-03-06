@@ -9,7 +9,7 @@ const TrainerSchema = new Schema({
 })
 
 TrainerSchema.pre('save', function (next) {
-    let trainer = this;
+    var trainer = this;
     if (this.isModified('password') || this.isNew) {
         bcrypt.genSalt(10, function (err, salt) {
             if (err) {

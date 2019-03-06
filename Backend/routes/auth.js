@@ -16,15 +16,15 @@ router.post('/login', function(req, res) {
       if (!trainer) {
         res.status(401).send({success: false, msg: 'Authentication failed. User not found.'});
       } else {
-        // check if password matches
         trainer.comparePassword(req.body.password, function (err, isMatch) {
-          if (isMatch && !err) {
-            // if user is found and password is right create a token
-            var token = jwt.sign(trainer.toJSON(), settings.secret);
+           console.log(req.body.password)
+           console.log(trainer)
+          if (trainer.password === req.body.password) {
+            let token = jwt.sign(trainer.toJSON(), keys.jwtSecret);
             // return the information including token as JSON
             res.json({success: true, token: 'JWT ' + token});
           } else {
-            res.status(401).send({success: false, msg: 'Authentication failed. Wrong password.'});
+            res.status(401).send({success: false, msg: ('Authentication failed. Wrong password.', req.body)});
           }
         });
       }
