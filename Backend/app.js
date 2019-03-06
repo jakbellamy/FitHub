@@ -8,6 +8,9 @@ const trainers = require('./routes/trainers.js');
 const supersets = require('./routes/supersets.js');
 const workouts = require('./routes/workouts.js');
 const app = express();
+const passport = require('./config/passport')
+const keys = require('./config/keys')
+const auth = require('./routes/auth');
 
 app.use(cors())
 app.use(bodyParser.json());
@@ -16,6 +19,8 @@ app.use('/supersets', supersets);
 app.use('/trainers', trainers);
 app.use('/workouts', workouts);
 app.use('/clients', clients);
+
+app.use('/auth', auth);
 
 const mongoose = require('mongoose');
 mongoose.set('useNewUrlParser', true);
