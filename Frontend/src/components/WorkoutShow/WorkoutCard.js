@@ -19,7 +19,7 @@ export default class WorkoutCard extends Component {
         <Paper style={this.cardStyle}>
           <CardContent >
             <Typography onClick={() => this.props.delete(this.props._id)} color="secondary" >Delete</Typography>  
-            <Typography style={{textAlign: 'center'}} variant="h5" component="h3" color="black" >
+            <Typography style={{textAlign: 'center', margin: '0.5% 1% 3% 1%'}} variant="h4" component="h2" color="primary" >
               {this.props.name}
             </Typography>
             {this.props.superSets.map(superset => {
