@@ -17,7 +17,8 @@ export default class StitchContainer extends Component {
     filter: '',
     supersets: [],
     newWorkoutSets: [],
-    newWorkout: {},
+    workoutName: null,
+    workoutKeywords: null,
     wantSearch: false,
     workoutReady: false
   }
@@ -42,12 +43,8 @@ export default class StitchContainer extends Component {
   wantSearch = () => {this.setState({wantSearch: !this.state.wantSearch, filter: ''})}
   workoutReady = () => {this.setState({workoutReady: !this.state.workoutReady})}
 
-  handleChange = (e) => {
-    this.setState({
-      newWorkout: {
-        [e.target.name]:e.target.value}
-    })
-  }
+  setName = (e) => {this.setState({workoutName: e.target.value})}
+  setKeywords = (e) => {this.setState({workoutKeywords: e.target.value})}
 
   render() {
     const search = <TextField id="outlined-full-width" label="Filter Superset Library" style={{ margin: 5 }} placeholder="ex. Ab Engagers" onChange={this.onSearch} InputLabelProps={{shrink: true,}}/>
@@ -55,13 +52,14 @@ export default class StitchContainer extends Component {
     const workoutReady = 
     <>
     <Paper style={{margin: '1% 1% 0% 1%'}}>
-      <TextField name="name" label="Name of Workout" fullWidth onChange={(e) => {this.handleChange(e)}} />
+      <TextField name="name" label="Name of Workout" fullWidth onChange={(e) => {this.setName(e)}} />
     </Paper>  
     <Paper style={{margin: '0% 1% 0% 1%'}}>
-      <TextField name="keywords" fullWidth label="Key Word to Identify Workout" onChange={(e) => {this.handleChange(e)}}/>
+      <TextField name="keywords" fullWidth label="Key Word to Identify Workout" onChange={(e) => {this.setKeywords(e)}}/>
     </Paper>
     <Button style={{color: 'Secondary'}}>Done</Button>
     </>
+    
     return (
       <>
         <Paper style={{alignItems: 'left',margin: "7% 0% 0% 0%"}}>

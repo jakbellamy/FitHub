@@ -37,7 +37,7 @@ class App extends Component {
       trainer: {},
       token: ''
     })
-    history.push('/stitchLab')
+    history.push('/login')
   }
 
   render() {
@@ -58,7 +58,7 @@ class App extends Component {
               </Switch>
           </>
         </Router>
-        <p style={{textAlign: 'right', margins: '20 20 20 20'}} onClick={this.logOut}>logout</p>
+        <p style={{textAlign: 'right', margins: '20 20 20 20'}} onClick={() => this.logOut()}>logout</p>
       </div>
     )
   }
