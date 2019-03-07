@@ -62,30 +62,32 @@ export default class FormTwo extends Component {
     let supersetField = 
       <>
         <TextField label="Exercise Name" id={`exercise${this.state.setCount}`} fullWidth onChange={(e) => this.exName(e)} />
-        <TextField label="Reps" id={`reps${this.state.setCount}`} fullWidth onChange={(e) => this.exReps(e)} />
-        <Button onClick={() => this.addSet({id: this.state.setCount})}>Add Set+</Button>
+        <TextField  label="Reps" id={`reps${this.state.setCount}`} fullWidth onChange={(e) => this.exReps(e)} />
+        <Button color="primary" onClick={() => this.addSet({id: this.state.setCount})}>Add Set+</Button>
       </>
-
-    let flash = <p color='red'>We Only Support 6 Sets per Super. Sorry.</p>
-
+    let flash = <p color='red'>FitHub Only Supports Eight Sets per Super. Sorry.</p>
+    let finish = <Button color="secondary"  onClick={() => this.postSuperset()}>Submit</Button>
     return (
       <Paper style={{marginTop: '8%', alignContent: 'center'}}>
-        <Typography variant="h4" >New Superset</Typography>
-        <Card>
+        <Card style={{textAlign: 'center'}}>
+        <Typography style={{margin: '2% 1% 1% 1%'}} variant="h4" >New Superset</Typography>
         <CardContent style={{margin: '0% 20% 0% 20%'}}>
           <TextField name="name" label="Name of Superset" fullWidth onChange={(e) => this.setName(e)} />
           {this.state.name.length > 1 ? <TextField name="keys" label="Key Words" fullWidth onChange={(e) => this.setKeys(e)}/> : null} 
-          {this.state.keys.length > 0 ? <Button onClick={() => this.addSet({id: this.state.setCount})}>Add Set+</Button> : null}
+          {this.state.keys.length > 0 ? <Button color="primary" onClick={() => this.addSet({id: this.state.setCount})}>Add Set+</Button> : null}
           {this.state.setCount >= 1 ? supersetField : null}
           {this.state.setCount >= 2 ? supersetField : null}
           {this.state.setCount >= 3 ? supersetField : null}
           {this.state.setCount >= 4 ? supersetField : null}
           {this.state.setCount >= 5 ? supersetField : null}
           {this.state.setCount >= 6 ? supersetField : null}
-          {this.state.setCount == 7 ? flash : null}
+          {this.state.setCount >= 7 ? supersetField : null}
+          {this.state.setCount >= 8 ? supersetField : null}
+          {this.state.setCount >= 9 ? flash : null}
+          {this.state.setCount >= 1 ? finish : null}
         </CardContent>
-        <Button onClick={() => this.postSuperset()}>Completed</Button>
       </Card>
+      
       </Paper>
     )
   }
