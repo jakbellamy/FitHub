@@ -11,7 +11,7 @@ export default class SuperSetCard extends Component {
   cardStyle = {
     // display: 'block',
     width: '40vw',
-    height: '25vw'
+    height: 'auto'
   } 
 
   render() {
