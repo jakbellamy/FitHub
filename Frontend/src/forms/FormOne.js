@@ -1,13 +1,25 @@
 import React, { Component } from 'react'
 import TagsInput from 'react-tagsinput'
 import 'react-tagsinput/react-tagsinput.css'
+import { Paper, TextField, Button } from '@material-ui/core';
+import FormTwo from './FormTwo';
 
+let updateElementInArray = (array, id, values) => {
+	return array.map( (element) => {
+		if(element.id == id){
+			return { ...element, ...values }
+		} else {
+			return element
+		}
+	})
+}
 export default class FormOne extends Component {
 
   state = {
-    workout: {},
-    tags: [],
-    formOneSubmit: false
+    formOneSubmit: false,
+    workoutName: '',
+    workoutKeywords: '',
+    newWorkoutSets: []
   }
 
   postRequest = (e) => {
@@ -17,7 +29,12 @@ export default class FormOne extends Component {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(this.state.workout)
+      body: JSON.stringify({
+        name: this.state.name,
+        keywords: [this.state.keywords],
+        trainer: this.props.trainer._id,
+        superSets: this.state.newWorkoutSets.map(set => set._id)
+      })
     })
     .then(res => res.json())
     .then(res => this.props.setWorkout(res))
@@ -32,7 +49,7 @@ export default class FormOne extends Component {
     this.setState({
       workout: {
         name: e.target.name.value,
-        trainer: e.target.trainer.value,
+        trainer: this.props.trainer,
         keywords: [e.target.Keyword.value]
       }
     }, () => {
@@ -42,29 +59,32 @@ export default class FormOne extends Component {
     )
   }
 
+  setName = (e) => {this.setState({workoutName: e.target.value})}
+  setKeywords = (e) => {this.setState({workoutKeywords: e.target.value})}
+
+  submitWorkout = () => {this.setState({formOneSubmit: true})}
+
 
   render() {
     if(!this.state.formOneSubmit){
       return (
-        <div>
-          <form onSubmit={this.handleSubmit}>
-           <p>Name of Workout: <input name='name' type='text' /></p>
-           <p>Trainer: <select name='trainer' style={{textAlign: 'right'}}>
-              {this.props.trainers.map(trainer => {
-                return <option value={trainer._id}>{trainer.name}</option>
-              })}
-          </select></p>
-          <p>Keywords: <input name='Keyword' type='text' /></p>
-          <input type='submit' value='Submit'/>
-          </form>
+        <div style={{alignContent: 'center'}}>
+          <Paper style={{margin: '1% 1% 0% 1%', alignContent: 'center'}}>
+            <TextField name="name" label="Name of Workout" fullWidth onChange={(e) => {this.setName(e)}} />
+          </Paper>  
+          <Paper style={{margin: '0% 1% 0% 1%'}}>
+            <TextField name="keywords" fullWidth label="Key Word to Identify Workout" onChange={(e) => {this.setKeywords(e)}}/>
+          </Paper>
+          <Button style={{alignContent: 'center'}} onClick={() => this.submitWorkout()}>Done</Button>
         </div>
       )
     }
     else{
       return(
         <div>
-          <h2 style={{textAlign: 'center'}}>{this.state.workout.name}</h2>
-          <p style={{textAlign: 'center'}}>({this.state.workout.keywords})</p>
+          <h2 style={{textAlign: 'center'}}>{this.state.workoutName}</h2>
+          <p style={{textAlign: 'center'}}>({this.state.workoutKeywords})</p>
+          <FormTwo />
         </div>
       )
     }

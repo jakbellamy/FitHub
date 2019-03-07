@@ -13,14 +13,16 @@ import experimentalWelcome from './components/experiments/experimentalWelcome';
 import SideMenu from './components/SideMenu';
 import Welcome from './components/Welcome';
 import { install } from '@material-ui/styles';
+import Workouts from './components/WorkoutShow/Workouts';
 
 
 class App extends Component {
   state = {
-    loggedIn: localStorage.length > 0 ? JSON.parse(localStorage.loggedIn) : {},
-    trainer: localStorage.length > 0 ? JSON.parse(localStorage.trainer) : {},
+    loggedIn: localStorage.length > 0 ? JSON.parse(localStorage.loggedIn) : null,
+    trainer: localStorage.length > 0 ? JSON.parse(localStorage.trainer) : null,
     token: localStorage.length > 0 ? localStorage.token : ''
   }
+
 
   loggedIn = () => {
       this.setState({
@@ -41,7 +43,6 @@ class App extends Component {
   }
 
   render() {
-    const sideMenu = <SideMenu />
     return (
       <div>
         <Router history={history}>
@@ -54,11 +55,10 @@ class App extends Component {
                 <Route path='/welcome'><Welcome trainer={this.state.trainer} logOut={this.logOut}/></Route>
                 <Route path='/stitchlab'><StitchContainer trainer={this.state.trainer}/></Route>
                 <Route path='/newexercise'><NewExcercise trainer={this.state.trainer}/></Route>
-                <Route path='/dev'><experimentalWelcome trainer={this.state.trainer}/></Route>
+                <Route path='/workouts'><Workouts trainer={this.state.trainer}/></Route>
               </Switch>
           </>
         </Router>
-        <p style={{textAlign: 'right', margins: '20 20 20 20'}} onClick={() => this.logOut()}>logout</p>
       </div>
     )
   }

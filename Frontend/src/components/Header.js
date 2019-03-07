@@ -32,7 +32,21 @@ export default class Header extends Component {
     else{
       return (
         <AppBar>
-          <h1 style={{color: 'white'}}>FITHUB</h1>
+          <Toolbar>
+          <h1 style={{color: 'white'}}>FITHUB</h1>    
+            <Typography variant="h6"  style={this.padded} onClick={() => this.props.logout()}>Logout</Typography>
+            
+            <Link style={{marginLeft: '1%'}} to="/workouts" >
+                  <Typography variant="h6"  style={this.padded}>Workouts</Typography>
+            </Link>   
+            <Link style={{marginLeft: '1%'}} to="/stitchlab" >
+                  <Typography variant="h6"  style={this.padded}>Stitcher</Typography>
+            </Link>   
+            <Link style={{marginLeft: '1%'}} to="/newexercise" >
+                  <Typography variant="h6"  style={this.padded}>Scratch</Typography>
+            </Link>   
+
+          </Toolbar>
         </AppBar>
       )
     }

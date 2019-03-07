@@ -61,7 +61,6 @@ export default class FormTwo extends Component {
         }}>
            <p>Name of SuperSet: <input name='name' type='text' /></p>
            <p>keywords: <input name='keywords' type='text'/></p>
-           <p>Set Reps: <input name='setReps' type='number'/></p>
            <div>
               <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                 <div style={{flexBasis: '30%'}}>

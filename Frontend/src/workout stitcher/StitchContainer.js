@@ -50,6 +50,7 @@ export default class StitchContainer extends Component {
         superSets: this.state.newWorkoutSets.map(set => set._id)
       })
     })
+    .then(history.push('/workouts'))
   }
 
   setNewWorkoutSets = (newWorkoutSets) => {this.setState({newWorkoutSets})}

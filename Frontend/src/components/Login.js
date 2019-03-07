@@ -44,7 +44,7 @@ export default class Login extends Component {
         .then(res => res.json())
         .then(res => {res.success ? this.setLocalStorage(res) : this.setState({flash: "you're doin somthin wrong"})})
         // .then(res => {localStorage.setItem('token', res.token)})
-        .then(() => {localStorage.length > 0 ? history.push('/stitchlab') : this.setState({flash: "you're doin somthin wrong"})})
+        .then(() => {localStorage.length > 0 ? history.push('/workouts') : this.setState({flash: "you're doin somthin wrong"})})
   }
 
   render() {
