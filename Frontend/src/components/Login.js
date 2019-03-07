@@ -44,7 +44,7 @@ export default class Login extends Component {
         .then(res => res.json())
         .then(res => {res.success ? this.setLocalStorage(res) : this.setState({flash: "you're doin somthin wrong"})})
         // .then(res => {localStorage.setItem('token', res.token)})
-        .then(() => {localStorage.length > 0 ? history.push('/welcome') : this.setState({flash: "you're doin somthin wrong"})})
+        .then(() => {localStorage.length > 0 ? history.push('/stitchlab') : this.setState({flash: "you're doin somthin wrong"})})
   }
 
   render() {
@@ -55,7 +55,7 @@ export default class Login extends Component {
         flexDirection: 'column',
         alignItems: 'center',
         padding: "2.5% 10% 5% 10%",
-        margin: "0% 25% 0% 25%"
+        margin: "8% 25% 0% 25%"
       }}>
 
       <Typography component="h1" variant="h5">Login</Typography>

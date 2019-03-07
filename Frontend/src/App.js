@@ -14,7 +14,6 @@ import SideMenu from './components/SideMenu';
 import Welcome from './components/Welcome';
 import { install } from '@material-ui/styles';
 
-install()
 
 class App extends Component {
   state = {
@@ -38,7 +37,7 @@ class App extends Component {
       trainer: {},
       token: ''
     })
-    history.push('/login')
+    history.push('/stitchLab')
   }
 
   render() {
@@ -49,6 +48,7 @@ class App extends Component {
           <>
            <Header loggedIn={this.state.loggedIn} logOut={this.logOut}/>
               <Switch>
+                {/* <Route path='/'>{history.push('/login')}</Route> */}
                 <Route path='/login'><Login loggedIn={this.loggedIn} trainer={this.state.trainer} setTrainer={this.setTrainerInState}/></Route>
                 <Route path='/signup'><Signup history={this.history}/></Route>
                 <Route path='/welcome'><Welcome trainer={this.state.trainer} logOut={this.logOut}/></Route>

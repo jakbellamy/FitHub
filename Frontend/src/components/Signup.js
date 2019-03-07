@@ -45,12 +45,12 @@ export default class Signup extends Component {
   render() {
     return (
         <Paper 
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            padding: "2.5% 10% 5% 10%",
-            margin: "0% 25% 0% 25%"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          padding: "2.5% 10% 5% 10%",
+          margin: "8% 25% 0% 25%"
           }}>
 
           <Typography component="h1" variant="h5">
