@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent'
 export default class ExerciseCard extends Component {
 
   render() {
+    console.log('ex card props', this.props)
     return (
       <Card>
         <CardContent>

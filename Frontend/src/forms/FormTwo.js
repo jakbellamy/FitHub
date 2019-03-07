@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Card, CardContent, TextField, Button, Paper, Typography } from '@material-ui/core';
+import {history} from '../history'
 
 let updateElementInArray = (array, id, values) => {
 	return array.map( (element) => {
@@ -49,13 +50,12 @@ export default class FormTwo extends Component {
         name: this.state.name,
         keywords: this.state.keys,
         trainer: this.props.trainer._id,
-        sets: {
-          exercises: this.state.sets
-        }
+        sets: this.state.sets
       })
     })
     .then(res => res.json)
     .then(res => console.log(res))
+    .then(history.push('/stitchlab'))
   }
 
   render() {

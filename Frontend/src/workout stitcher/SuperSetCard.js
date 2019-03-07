@@ -15,6 +15,7 @@ export default class SuperSetCard extends Component {
   } 
 
   render() {
+    console.log(this.props.sets.map(set => set))
     return (
       <Card style={this.cardStyle}>
         <CardContent>
@@ -22,8 +23,8 @@ export default class SuperSetCard extends Component {
             {this.props.name}
           </Typography>
 
-          {this.props.sets.excercises.map(exercise => {
-            return <ExerciseCard {...exercise} />
+          {this.props.sets.map(set => {
+            return <ExerciseCard {...set} />
           })}
 
         </CardContent>
