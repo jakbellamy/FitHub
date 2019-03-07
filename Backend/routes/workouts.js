@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Workout = require('../models/workout')
+const Superset = require('../models/superset')
 
 router.get('/', (req, res, next) => {
   Workout.find()

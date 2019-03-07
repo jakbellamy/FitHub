@@ -9,8 +9,10 @@ import { Link } from 'react-router-dom';
 export default class Header extends Component {
 
   buttonPad = {padding: "0px 10px 10px 0px"}
+  logOut = {padding: "0px 10px 10px 0px", textAlign: 'right'}
   render() {
-    return (
+    if(!this.props.loggedIn){
+      return (
         <div style={{flexGrow: 1}}>
           <Typography component='h1' variant="h4">FITHUB</Typography>
             <Toolbar>
@@ -19,9 +21,19 @@ export default class Header extends Component {
                 </Link>     
                 <Link style={{ textDecoration: 'none' }} to="/signup" >
                   <Typography variant="h6" color={grey[900]} style={this.buttonPad}>Signup</Typography>
-                </Link>     
+                </Link>        
             </Toolbar>
       </div>
-    )
-  }
-}
+    )}
+    else{
+      return (
+        <div style={{flex: 1, flexDirection: 'row'}}>
+          <Typography component='h1' variant="h4">FITHUB</Typography>
+            <Toolbar>
+             <Typography style={{textAlign: 'right'}} onClick={this.props.logOut} variant="h6" style={this.logOut}>Logout</Typography>
+            </Toolbar>
+        </div>
+      )
+    }
+}}
+

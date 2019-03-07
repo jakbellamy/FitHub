@@ -6,8 +6,6 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import withStyles from '@material-ui/core/styles/withStyles'
-import {Link} from 'react-router-dom'
 import {history} from '../history'
 export default class Login extends Component {
 
@@ -26,6 +24,8 @@ export default class Login extends Component {
   setLocalStorage = (res) => {
     localStorage.setItem('token', res.token)
     localStorage.setItem('trainer', JSON.stringify(res.trainer))
+    localStorage.setItem('loggedIn', true)
+    this.props.loggedIn()
   }
 
   postRequest = (e) => {
@@ -44,44 +44,8 @@ export default class Login extends Component {
         .then(res => res.json())
         .then(res => {res.success ? this.setLocalStorage(res) : this.setState({flash: "you're doin somthin wrong"})})
         // .then(res => {localStorage.setItem('token', res.token)})
-        .then(() => {localStorage.length > 0 ? history.push('/stitchlab') : this.setState({flash: "you're doin somthin wrong"})})
-          
-          // localStorage.setItem('trainer', JSON.stringify(res.trainer))
-        // .then(res => this.props.setTrainer(res.token, res.trainer))
-        // .then( this.props.trainer ? history.push('/stitchlab') : this.flash = "you're doin somethin wrong buddy")
+        .then(() => {localStorage.length > 0 ? history.push('/welcome') : this.setState({flash: "you're doin somthin wrong"})})
   }
-
-  // signRequest = (e) => {
-  //   e.preventDefault()
-  //   this.setState({
-  //       username: e.target.username.value,
-  //       password: e.target.password.value
-  //   }, 
-  //     () => {
-  //       this.postRequest(e)
-  //     }
-  //   )
-  // }
-
-//   logIn = (e) => {
-//     e.preventDefault()
-//     fetch(`http://localhost:5000/auth/login`, {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body:JSON.stringify({
-//             username: this.state.username,
-//             password: this.state.password
-//         })
-//     })
-//      .then(res => res.json())
-//      .then(console.log)
-//      .then( res => {
-//          this.props.onLogin(res.token, res.trainer)
-//         //  this.props.history.push(`/stitchlab`)
-//      } )
-//  }
 
   render() {
     return (
