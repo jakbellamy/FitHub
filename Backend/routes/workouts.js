@@ -6,6 +6,7 @@ const Superset = require('../models/superset')
 router.get('/', (req, res, next) => {
   Workout.find()
       .populate('trainer')
+      .populate('superSets')
       .exec((err, workout) => {
         if(err){
           return next(err)
@@ -30,7 +31,8 @@ router.post('/', (req, res, next) => {
   let workout = new Workout({
     name: req.body.name,
     keywords: req.body.keywords,
-    trainer: req.body.trainer
+    trainer: req.body.trainer,
+    superSets: req.body.superSets
   })
   console.log(workout)
   workout.save(function(err){

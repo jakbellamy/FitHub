@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import {history} from '../history'
 import { TextField, ButtonBase } from '@material-ui/core';
 
+
 export default class StitchContainer extends Component {
 
   state = {
@@ -36,6 +37,21 @@ export default class StitchContainer extends Component {
     this.fetchSupersets()
   }
 
+  submitWorkout = () => {
+    fetch('http://localhost:5000/workouts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: this.state.workoutName,
+        keywords: [this.state.workoutKeywords],
+        trainer: this.props.trainer._id,
+        superSets: this.state.newWorkoutSets.map(set => set._id)
+      })
+    })
+  }
+
   setNewWorkoutSets = (newWorkoutSets) => {this.setState({newWorkoutSets})}
   setSupersets = (supersets) => {this.setState({supersets})}
   onSearch = (e) => {this.setState({filter: e.target.value})}
@@ -57,14 +73,14 @@ export default class StitchContainer extends Component {
     <Paper style={{margin: '0% 1% 0% 1%'}}>
       <TextField name="keywords" fullWidth label="Key Word to Identify Workout" onChange={(e) => {this.setKeywords(e)}}/>
     </Paper>
-    <Button style={{color: 'Secondary'}}>Done</Button>
+    <Button onClick={() => this.submitWorkout()}>Done</Button>
     </>
-    
+
     return (
       <>
         <Paper style={{alignItems: 'left',margin: "7% 0% 0% 0%"}}>
-          <Button onClick={this.wantSearch}>Save</Button>
-          <Button style={{textAlign: 'right'}} onClick={this.workoutReady}>Save as Workout</Button>
+          <Button onClick={this.wantSearch}>Search</Button>
+          <Button style={{textAlign: 'right'}} onClick={this.workoutReady}>Save as New Workout</Button>
         </Paper>
         {this.state.wantSearch ? search : null}
         {this.state.workoutReady ? workoutReady : null}
