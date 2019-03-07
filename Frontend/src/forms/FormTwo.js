@@ -1,9 +1,42 @@
 import React, { Component } from 'react'
+import { Card, CardContent, TextField, Button, Paper, Typography } from '@material-ui/core';
 
+let updateElementInArray = (array, id, values) => {
+	return array.map( (element) => {
+		if(element.id == id){
+			return { ...element, ...values }
+		} else {
+			return element
+		}
+	})
+}
 export default class FormTwo extends Component {
-  state = {
-      counter: 1,
-      superSet: {}
+  
+  state={
+    name: '',
+    keys: '',
+    sets: [],
+    setCount: 0
+  }
+  test = (e) => {this.setState({sets: updateElementInArray(this.state.sets, 0,)})}
+  exName = (e) => {
+    this.setState({sets: updateElementInArray(this.state.sets, this.state.setCount - 1, {name: e.target.value})})
+  }
+  exReps = (e) => {
+    this.setState({sets: updateElementInArray(this.state.sets, this.state.setCount - 1, {reps: e.target.value})})
+  }
+
+  pushSet = (set) => {
+    this.setState({sets: {...this.state.sets, set}})
+  }
+
+  setName = (e) => {this.setState({name: e.target.value})}
+  setKeys = (e) => {this.setState({keys: [e.target.value]})}
+  addSet = (obj) => {
+    this.setState({
+      setCount: ++this.state.setCount,
+      sets: [...this.state.sets, obj ]
+    })
   }
 
   postSuperset = () => {
@@ -12,75 +45,48 @@ export default class FormTwo extends Component {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(this.state.superSet)
-    })
-  }
-
-  clearForm = () => {
-    document.getElementById('form').reset()
-  }
-
-  workoutRequest = (e) => {
-    this.setState({
-      superSet: {
-        name: e.target.name.value,
-        keywords: [e.target.keywords.value],
-        workouts: [this.props.workout_id],
+      body: JSON.stringify({
+        name: this.state.name,
+        keywords: this.state.keys,
+        trainer: this.props.trainer._id,
         sets: {
-            reps: e.target.setReps.value,
-            excercises: [
-                {
-                    name: e.target.excerciseOne.value,
-                    reps: e.target.repsOne.value
-                },
-                {
-                    name: e.target.excerciseTwo.value,
-                    reps: e.target.repsTwo.value
-                },
-                {
-                    name: e.target.excerciseThree.value,
-                    reps: e.target.repsThree.value
-                },
-            ]
-      }},
-      counter: this.state.counter + 1
-    }, () => {
-      this.postSuperset()
-      this.clearForm()
-    }
-    )
+          exercises: this.state.sets
+        }
+      })
+    })
+    .then(res => res.json)
+    .then(res => console.log(res))
   }
 
   render() {
+    let supersetField = 
+      <>
+        <TextField label="Exercise Name" id={`exercise${this.state.setCount}`} fullWidth onChange={(e) => this.exName(e)} />
+        <TextField label="Reps" id={`reps${this.state.setCount}`} fullWidth onChange={(e) => this.exReps(e)} />
+        <Button onClick={() => this.addSet({id: this.state.setCount})}>Add Set+</Button>
+      </>
+
+    let flash = <p color='red'>We Only Support 6 Sets per Super. Sorry.</p>
+
     return (
-      <div>
-        <h3>Superset {this.state.counter}</h3>
-        <form id='form' onSubmit={(e) => {
-            e.preventDefault()
-            this.workoutRequest(e)
-        }}>
-           <p>Name of SuperSet: <input name='name' type='text' /></p>
-           <p>keywords: <input name='keywords' type='text'/></p>
-           <div>
-              <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                <div style={{flexBasis: '30%'}}>
-                 <p>Excercise:<input name='excerciseOne' type='text'/></p>
-                 <p>Reps: <input name='repsOne' type='number'/></p>
-               </div>  
-                <div style={{flexBasis: '30%'}}>
-                 <p>Excercise:<input name='excerciseTwo' type='text'/></p>
-                 <p>Reps: <input name='repsTwo' type='number'/></p>
-               </div>  
-                <div style={{flexBasis: '30%'}}>
-                 <p>Excercise:<input name='excerciseThree' type='text'/></p>
-                 <p>Reps: <input name='repsThree' type='number'/></p>
-            </div>  
-            
-          </div>
-          </div>
-          <input type='submit' value='Save' />
-          </form>
-      </div>
+      <Paper style={{marginTop: '8%', alignContent: 'center'}}>
+        <Typography variant="h4" >New Superset</Typography>
+        <Card>
+        <CardContent style={{margin: '0% 20% 0% 20%'}}>
+          <TextField name="name" label="Name of Superset" fullWidth onChange={(e) => this.setName(e)} />
+          {this.state.name.length > 1 ? <TextField name="keys" label="Key Words" fullWidth onChange={(e) => this.setKeys(e)}/> : null} 
+          {this.state.keys.length > 0 ? <Button onClick={() => this.addSet({id: this.state.setCount})}>Add Set+</Button> : null}
+          {this.state.setCount >= 1 ? supersetField : null}
+          {this.state.setCount >= 2 ? supersetField : null}
+          {this.state.setCount >= 3 ? supersetField : null}
+          {this.state.setCount >= 4 ? supersetField : null}
+          {this.state.setCount >= 5 ? supersetField : null}
+          {this.state.setCount >= 6 ? supersetField : null}
+          {this.state.setCount == 7 ? flash : null}
+        </CardContent>
+        <Button onClick={() => this.postSuperset()}>Completed</Button>
+      </Card>
+      </Paper>
     )
   }
 }

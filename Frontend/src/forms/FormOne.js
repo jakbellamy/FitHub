@@ -39,6 +39,10 @@ export default class FormOne extends Component {
     .then(res => res.json())
     .then(res => this.props.setWorkout(res))
   }
+  
+  pushSet = (set) => {
+    this.setState({newWorkoutSets: {...this.state.newWorkoutSets, set}})
+  }
 
   submitFormOne = () => {
     this.setState({
@@ -84,7 +88,7 @@ export default class FormOne extends Component {
         <div>
           <h2 style={{textAlign: 'center'}}>{this.state.workoutName}</h2>
           <p style={{textAlign: 'center'}}>({this.state.workoutKeywords})</p>
-          <FormTwo />
+          <FormTwo pushSet={this.pushSet}/>
         </div>
       )
     }

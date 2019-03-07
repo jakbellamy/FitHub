@@ -14,6 +14,7 @@ import SideMenu from './components/SideMenu';
 import Welcome from './components/Welcome';
 import { install } from '@material-ui/styles';
 import Workouts from './components/WorkoutShow/Workouts';
+import FormTwo from './forms/FormTwo';
 
 
 class App extends Component {
@@ -54,7 +55,7 @@ class App extends Component {
                 <Route path='/signup'><Signup history={this.history}/></Route>
                 <Route path='/welcome'><Welcome trainer={this.state.trainer} logOut={this.logOut}/></Route>
                 <Route path='/stitchlab'><StitchContainer trainer={this.state.trainer}/></Route>
-                <Route path='/newexercise'><NewExcercise trainer={this.state.trainer}/></Route>
+                <Route path='/newsuperset'><FormTwo trainer={this.state.trainer}/></Route>
                 <Route path='/workouts'><Workouts trainer={this.state.trainer}/></Route>
               </Switch>
           </>

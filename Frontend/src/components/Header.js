@@ -34,7 +34,7 @@ export default class Header extends Component {
         <AppBar>
           <Toolbar>
           <h1 style={{color: 'white'}}>FITHUB</h1>    
-            <Typography variant="h6"  style={this.padded} onClick={() => this.props.logout()}>Logout</Typography>
+            <Typography variant="h6"  style={this.padded} onClick={() => this.props.logOut()}>Logout</Typography>
             
             <Link style={{marginLeft: '1%'}} to="/workouts" >
                   <Typography variant="h6"  style={this.padded}>Workouts</Typography>
@@ -42,8 +42,8 @@ export default class Header extends Component {
             <Link style={{marginLeft: '1%'}} to="/stitchlab" >
                   <Typography variant="h6"  style={this.padded}>Stitcher</Typography>
             </Link>   
-            <Link style={{marginLeft: '1%'}} to="/newexercise" >
-                  <Typography variant="h6"  style={this.padded}>Scratch</Typography>
+            <Link style={{marginLeft: '1%'}} to="/newsuperset" >
+                  <Typography variant="h6"  style={this.padded}>Create Superset</Typography>
             </Link>   
 
           </Toolbar>
