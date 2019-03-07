@@ -18,10 +18,14 @@ import {history} from '../history'
 export default class SideMenu extends Component {
   render() {
     return (
-      <div >
+      <div style={{
+        backgroundColor: '#bccad6',
+        flex: 1,
+        justifyContent: 'stretch'
+        }}>
         <Divider />
-          <List>
-            <ListItem key={'trainer'}>
+          <List >
+            <ListItem key={'trainer'} >
               <ListItemText primary={this.props.trainer.name} />
             </ListItem>
           </List>

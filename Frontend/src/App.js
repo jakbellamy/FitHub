@@ -12,10 +12,9 @@ import {history} from './history'
 import experimentalWelcome from './components/experiments/experimentalWelcome';
 import SideMenu from './components/SideMenu';
 import Welcome from './components/Welcome';
-import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+import { install } from '@material-ui/styles';
 
+install()
 
 class App extends Component {
   state = {
@@ -45,13 +44,10 @@ class App extends Component {
   render() {
     const sideMenu = <SideMenu />
     return (
-      <div style={{display: 'flex'}}>
+      <div>
         <Router history={history}>
-          <div>
-           <div style={{justifyContent: 'left'}}>
-            <Header loggedIn={this.state.loggedIn} logOut={this.logOut}/>
-           </div>
-           {this.state.loggedIn ? <SideMenu trainer={this.state.trainer} logOut={this.logOut} /> : null}
+          <>
+           <Header loggedIn={this.state.loggedIn} logOut={this.logOut}/>
               <Switch>
                 <Route path='/login'><Login loggedIn={this.loggedIn} trainer={this.state.trainer} setTrainer={this.setTrainerInState}/></Route>
                 <Route path='/signup'><Signup history={this.history}/></Route>
@@ -60,7 +56,7 @@ class App extends Component {
                 <Route path='/newexercise'><NewExcercise trainer={this.state.trainer}/></Route>
                 <Route path='/dev'><experimentalWelcome trainer={this.state.trainer}/></Route>
               </Switch>
-          </div>
+          </>
         </Router>
         <p style={{textAlign: 'right', margins: '20 20 20 20'}} onClick={this.logOut}>logout</p>
       </div>
