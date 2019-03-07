@@ -6,7 +6,6 @@ import SearchField from './SearchField';
 export default class StitchContainer extends Component {
 
   state = {
-    currentUser: null,
     filter: '',
     supersets: [],
     newWorkoutSets: [],

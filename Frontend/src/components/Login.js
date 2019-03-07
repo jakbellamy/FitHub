@@ -23,6 +23,11 @@ export default class Login extends Component {
     })
   }
 
+  setLocalStorage = (res) => {
+    localStorage.setItem('token', res.token)
+    localStorage.setItem('trainer', JSON.stringify(res.trainer))
+  }
+
   postRequest = (e) => {
     // console.log(this.props.trainer)
     e.preventDefault()
@@ -37,11 +42,13 @@ export default class Login extends Component {
           })
       })
         .then(res => res.json())
-        // .then(res => {
-        //   localStorage.token = res.token
-        //   localStorage.trainer = res.trainer})
-        .then(res => this.props.setTrainer(res.token, res.trainer))
-        .then( this.props.trainer ? history.push('/stitchlab') : this.flash = "you're doin somethin wrong buddy")
+        .then(res => {res.success ? this.setLocalStorage(res) : this.setState({flash: "you're doin somthin wrong"})})
+        // .then(res => {localStorage.setItem('token', res.token)})
+        .then(() => {localStorage.length > 0 ? history.push('/stitchlab') : this.setState({flash: "you're doin somthin wrong"})})
+          
+          // localStorage.setItem('trainer', JSON.stringify(res.trainer))
+        // .then(res => this.props.setTrainer(res.token, res.trainer))
+        // .then( this.props.trainer ? history.push('/stitchlab') : this.flash = "you're doin somethin wrong buddy")
   }
 
   // signRequest = (e) => {
@@ -89,7 +96,7 @@ export default class Login extends Component {
 
       <Typography component="h1" variant="h5">Login</Typography>
       <Typography component="subheading" color="secondary">
-        {this.flash}
+        {this.state.flash}
       </Typography>
       <form onSubmit={(e) => {this.postRequest(e)}} id='form' style={{width: 'auto'}}>
         <FormControl margin="normal" required fullWidth>

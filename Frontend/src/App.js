@@ -30,8 +30,8 @@ class App extends Component {
               <Switch>
                 <Route path='/login'><Login trainer={this.state.trainer} setTrainer={this.setTrainerInState}/></Route>
                 <Route path='/signup'><Signup history={this.history}/></Route>
-                <Route path='/stitchlab'><StitchContainer /></Route>
-                <Route path='/newexercise'><NewExcercise /></Route>
+                <Route path='/stitchlab'><StitchContainer trainer={this.state.trainer}/></Route>
+                <Route path='/newexercise'><NewExcercise trainer={this.state.trainer}/></Route>
               </Switch>
           </>
         </Router>
