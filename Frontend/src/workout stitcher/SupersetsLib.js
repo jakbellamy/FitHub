@@ -6,22 +6,30 @@ import SuperSetCard from './SuperSetCard';
 export default class SupersetsLib extends Component {
 
   
-  groupStyle = {
-    marginLeft: '50px',
-    flex: 1,
-    justifyContent: 'stretch',
+  rightStyle = {
+    marginLeft: '0%',
+    flex: 0.5,
+    justifyContent: 'right',
+    overflow: 'auto',
+    width: 'auto'
+
   }
 
- 
+  leftStyle = {
+    flex: 0.5,
+    justfiyContent: 'left',
+    overflow: 'auto',
+    width: 'auto'
+  }
 
   render() {
     let x = 0
     return (
-      <div style={{overflow:'auto'}}>
-        <div style={{ display: 'flex', marginTop: '50px', marginRight: '50px', height: '1000px', width: 'auto', overflow: 'auto' }}>
+      <div >
+        <div style={{ display: 'flex', marginTop: '50px', height: 'auto', width: 'auto' }}>
 
           <Container 
-            style={this.groupStyle}
+            style={this.leftStyle}
             groupName='things' 
             behaviour="copy" 
             getChildPayload={i => this.props.supersets[i]}
@@ -39,7 +47,7 @@ export default class SupersetsLib extends Component {
 
         
           <Container 
-            style={this.groupStyle}
+            style={this.rightStyle}
             groupName='things'
             removeOnDropOut='true'
             getChildPayload={i => this.props.newWorkoutSets[i]} 
