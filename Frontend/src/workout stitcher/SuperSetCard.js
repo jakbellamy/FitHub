@@ -10,7 +10,7 @@ export default class SuperSetCard extends Component {
 
   cardStyle = {
     // display: 'block',
-    width: '40vw',
+    width: 'auto',
     height: 'auto'
   } 
 
