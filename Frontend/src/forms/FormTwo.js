@@ -19,7 +19,16 @@ export default class FormTwo extends Component {
     sets: [],
     setCount: 0
   }
+  
   test = (e) => {this.setState({sets: updateElementInArray(this.state.sets, 0,)})}
+
+  addSet = (obj) => {
+    this.setState({
+      setCount: ++this.state.setCount,
+      sets: [...this.state.sets, obj ]
+    })
+  }
+
   exName = (e) => {
     this.setState({sets: updateElementInArray(this.state.sets, this.state.setCount - 1, {name: e.target.value})})
   }
@@ -33,12 +42,7 @@ export default class FormTwo extends Component {
 
   setName = (e) => {this.setState({name: e.target.value})}
   setKeys = (e) => {this.setState({keys: [e.target.value]})}
-  addSet = (obj) => {
-    this.setState({
-      setCount: ++this.state.setCount,
-      sets: [...this.state.sets, obj ]
-    })
-  }
+
 
   postSuperset = () => {
     fetch(`http://localhost:5000/supersets`, {
